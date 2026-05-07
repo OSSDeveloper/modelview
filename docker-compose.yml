@@ -9,11 +9,12 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=false
-      - ENVIRONMENT=production
+      - REDIS_URL=redis://modelview-redis:6379
     restart: unless-stopped
     networks:
       - modelview_network
+    depends_on:
+      - modelview-redis
 
   frontend:
     build:
@@ -29,6 +30,16 @@ services:
       - modelview_network
     depends_on:
       - backend
+
+  modelview-redis:
+    image: redis:7-alpine
+    container_name: modelview_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - modelview_network
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
 
 networks:
   modelview_network:

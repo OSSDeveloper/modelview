@@ -1,78 +1,207 @@
-.main {
+.container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background: #0a0a0f;
+  color: #e0e0e8;
 }
 
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 2rem;
   text-align: center;
+  padding: 60px 20px 20px;
 }
 
-.header h1 {
-  margin: 0;
+.title {
   font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7c3aed, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
 }
 
 .subtitle {
-  margin: 0.5rem 0 0;
-  opacity: 0.9;
+  font-size: 1.1rem;
+  color: #666688;
 }
 
-.container {
+.searchBar {
   display: flex;
+  max-width: 680px;
+  margin: 30px auto;
+  padding: 0 20px;
+  gap: 8px;
+}
+
+.searchInput {
   flex: 1;
-  gap: 1px;
-  background: #ddd;
+  padding: 14px 18px;
+  font-size: 1rem;
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  background: #12121c;
+  color: #e0e0e8;
+  outline: none;
 }
 
-.sidebar {
-  width: 280px;
-  background: white;
-  overflow-y: auto;
+.searchInput:focus {
+  border-color: #7c3aed;
 }
 
-.content {
-  flex: 1;
-  padding: 1.5rem;
-  background: white;
-}
-
-.modelInfo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.modelInfo h2 {
-  margin: 0;
-}
-
-.badge {
-  background: #667eea;
+.searchBtn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #7c3aed;
   color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.875rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.footer {
-  background: #f5f5f5;
-  padding: 1rem;
+.searchBtn:hover {
+  background: #6d28d9;
+}
+
+.popular {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.popularTitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #555566;
+  margin-bottom: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  background: #12121c;
+  border: 1px solid #1e1e2e;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+  text-align: left;
+  width: 100%;
+}
+
+.card:hover {
+  border-color: #7c3aed;
+  transform: translateY(-2px);
+}
+
+.cardName {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  color: #e0e0e8;
+}
+
+.cardMeta {
+  font-size: 0.72rem;
+  color: #666688;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cardType {
+  background: #1e1e2e;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #a855f7;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 20px;
+  color: #666688;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #2a2a3a;
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #1a0f0f;
+  border: 1px solid #991b1b;
+  border-radius: 10px;
+  color: #fca5a5;
   text-align: center;
-  color: #666;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    max-height: 200px;
-  }
+.result {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.modelHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.modelName {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.modelType {
+  font-size: 0.75rem;
+  background: #1e1e2e;
+  color: #a855f7;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.statBadge {
+  font-size: 0.72rem;
+  background: #12121c;
+  border: 1px solid #2a2a3a;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #888899;
+}
+
+.statBadge strong {
+  color: #c0c0d0;
 }
