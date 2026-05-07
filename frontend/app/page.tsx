@@ -54,9 +54,15 @@ function parseModelInput(input: string): string {
 
 async function fetchModelGraph(modelId: string): Promise<GraphData | null> {
   try {
-    const res = await fetch(`${API_URL}/${modelId}`, { cache: 'no-store' });
-    if (!res.ok) return null;
-    return res.json();
+    // modelId format: "org/model" → call /api/model/{org}/{model}
+    const parts = modelId.replace(':', '/').split('/');
+    if (parts.length >= 2) {
+      const [org, model] = parts;
+      const res = await fetch(`${API_URL}/api/model/${org}/${model}`, { cache: 'no-store' });
+      if (!res.ok) return null;
+      return res.json();
+    }
+    return null;
   } catch {
     return null;
   }
