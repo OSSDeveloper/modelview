@@ -6,7 +6,7 @@ import ModelViewer from './components/ModelViewer';
 import ModelList from './components/ModelList';
 import styles from './page.module.css';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 interface GraphNode {
   id: string;
