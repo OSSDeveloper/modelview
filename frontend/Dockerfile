@@ -3,14 +3,15 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install
 
 COPY . .
-
 RUN npm run build
+
+FROM nginx:alpine
+COPY --from=0 /app/.next /usr/share/nginx/html
+COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 3000
 
-ENV NODE_ENV=production
-
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
