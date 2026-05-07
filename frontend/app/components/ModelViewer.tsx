@@ -104,7 +104,7 @@ export default function ModelViewer({
       const nodeLayer = new Map<string, number>();
       const visited = new Set<string>();
 
-      function assignLayer(nodeId: string, layer: number) {
+      const assignLayer = (nodeId: string, layer: number) => {
         if (visited.has(nodeId)) return;
         visited.add(nodeId);
         nodeLayer.set(nodeId, layer);
@@ -114,7 +114,7 @@ export default function ModelViewer({
             assignLayer(e.target as string, layer + 1);
           }
         });
-      }
+      };
 
       // Find roots (nodes with no incoming edges)
       const hasIncoming = new Set(normalizedEdges.map(e => e.target as string));
