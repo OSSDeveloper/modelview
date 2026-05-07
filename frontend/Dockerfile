@@ -9,7 +9,9 @@ COPY . .
 RUN npm run build
 
 FROM nginx:alpine
-COPY --from=0 /app/.next /usr/share/nginx/html
+# Next.js standalone output is in .next/standalone/
+COPY --from=0 /app/.next/standalone /usr/share/nginx/html
+COPY --from=0 /app/.next/static /usr/share/nginx/html/.next/static
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 3000
