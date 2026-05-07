@@ -97,6 +97,19 @@ function HomeContent() {
     }
   }, [initialModel]);
 
+  // Auto-visualize when modelId is set from URL params
+  const hasAutoVisualized = useRef(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (modelId && !hasAutoVisualized.current) {
+        hasAutoVisualized.current = true;
+        handleVisualize(modelId);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run once on mount
+
   async function handleVisualize(id?: string) {
     const targetId = id || parseModelInput(inputValue);
     if (!targetId) return;
