@@ -7,6 +7,11 @@ interface Node {
   id: string;
   type: string;
   label: string;
+  // D3 simulation properties
+  x?: number;
+  y?: number;
+  fx?: number | null;
+  fy?: number | null;
 }
 
 interface Edge {
