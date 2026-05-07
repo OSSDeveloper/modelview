@@ -14,7 +14,6 @@ WORKDIR /app
 
 COPY --from=0 /app/.next/standalone /app
 COPY --from=0 /app/.next/static /app/.next/static
-COPY --from=0 /app/public /app/public 2>/dev/null || true
 
 ENV NODE_ENV=production
 ENV PORT=3000
